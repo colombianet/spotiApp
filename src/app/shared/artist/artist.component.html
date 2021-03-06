@@ -1,0 +1,40 @@
+<div class="spinner-border text-primary mt-4" role="status" *ngIf="loading">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<div class="row animate__animated animate__fadeIn animate__faster" *ngIf="artist && !loading">
+    <div class="col-2">
+        <img [src]="artist.images | noimage" alt="artist.name" class="img-thumbnail img-circle">
+    </div>
+    <div class="col">
+        <h2>{{ artist.name }}</h2>
+        <a [href]="artist.external_urls.spotify" target="_blank">Ver al artista en Spotify</a>
+    </div>
+</div>
+
+<div class="row mt-4  animate__animated animate__fadeIn animate__faster" *ngIf="topTracks && !loading">
+    <div class="col">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Album</th>
+                    <th scope="col">Cancion</th>
+                    <th scope="col">Reproducir</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let track of topTracks">
+                    <th>
+                        <img [src]="track.album.images | noimage" alt="" width="80px">
+                    </th>
+                    <td>{{ track.album.name }}</td>
+                    <td>{{ track.name }}</td>
+                    <td>
+                        <iframe [src]="track.uri | domseguro" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

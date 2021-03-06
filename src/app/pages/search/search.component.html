@@ -1,0 +1,20 @@
+<div class="row animate__animated animate__fadeIn animate__faster">
+    <div class="col">
+        <input type="text" class="form-control" (keyup)="search(busqueda.value)" #busqueda placeholder="Buscar artista">
+    </div>
+</div>
+
+<app-loading *ngIf="loading" class="animate__animated animate__fadeIn animate__faster"></app-loading>
+
+<div class="row mt-4  animate__animated animate__fadeIn animate__faster" *ngIf="!loading">
+    <div class="col mb-4">
+        <div class="card-columns" *ngIf="artists.length > 0">
+            <div class="card pointer" *ngFor="let item of artists" [routerLink]="['/artist', item.id]">
+                <img src="{{item.images | noImage}}" class="card-img-top" alt="artista">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

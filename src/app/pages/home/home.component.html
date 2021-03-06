@@ -1,0 +1,17 @@
+<app-loading *ngIf="loading" class="animate__animated animate__fadeIn animate__faster"></app-loading>
+
+<div class="row mt-4 animate__animated animate__fadeIn animate__faster" *ngIf="!loading">
+    <div class="col mb-4">
+        <div class="card-columns" *ngIf="items.length > 0">
+            <div class="card pointer" [routerLink]="['/artist', item.artists[0].id]" *ngFor="let item of items">
+                <img [src]="item.images | noImage" class="card-img-top" alt="artistas">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.name }}</h5>
+                    <p class="card-text">
+                        <span class="badge badge-pill badge-primary" *ngFor="let artista of item.artists">{{ artista.name }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
